@@ -29,7 +29,6 @@ def index(request):
         if request.method == 'POST':
                 username = request.POST['user_name']
                 useremail = request.POST['user_email']
-                user = User.objects.create(Name = username, Email = useremail)
                 if User.objects.filter(Name = username, Email = useremail).exists():
                         messages.info(request,'This account already exists')
                         return HttpResponseRedirect('#form')
