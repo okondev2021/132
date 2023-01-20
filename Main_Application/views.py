@@ -30,10 +30,10 @@ def index(request):
                 username = request.POST['user_name']
                 useremail = request.POST['user_email']
                 user = User.objects.create(Name = username, Email = useremail)
-                sending_email(useremail,username)
+                print(sending_email(useremail,username))
                 user.save()
-                messages.info(request,'Thank you, your email has been received. A confirmation email will be sent to you soon')
-                return HttpResponseRedirect('#form')
+                # messages.info(request,'Thank you, your email has been received. A confirmation email will be sent to you soon')
+                # return HttpResponseRedirect('#form')
                 # if User.objects.filter(Name = username, Email = useremail).exists():
                 #         messages.info(request,'This account already exists')
                 #         return HttpResponseRedirect('#form')
@@ -68,7 +68,7 @@ def admin_message(request):
         if request.method == 'POST':
                 messageSubject = request.POST['subject']
                 adminmessage =  request.POST['adminmessage'] 
-                messages.info(request,'Message has been sent')   
+                # messages.info(request,'Message has been sent')   
                 print(sending_general_email(users,messageSubject,adminmessage))
         return render(request,'Main_Application/admin-msg.html')
 
