@@ -70,5 +70,8 @@ def admin_message(request):
 
 def csc_admin(request):
     userEmails = User.objects.all()
+    if request.method == 'POST':
+            useremail = request.POST['useremail']
+            User.objects.filter(Email = useremail).delete()
     return render(request,'Main_Application/csc-admin.html',{'userEmails':userEmails})
 

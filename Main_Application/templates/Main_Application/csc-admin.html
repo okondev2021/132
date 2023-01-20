@@ -32,7 +32,16 @@
             <div style="color: white;padding-top:2em " class="user">
                 {% for userEmail in userEmails %}
                     <div style="margin-bottom: 1em">
-                        <p>{{userEmail.Name}} : {{userEmail.Email}}</p>
+                        <div>
+                            <p>{{userEmail.Name}} : {{userEmail.Email}}</p>
+                        </div>
+                        <div>
+                            <form action="{% url 'csc_admin' %}" method="POST">
+                                {% csrf_token %}
+                                <input value="{{userEmail.Email}}" type="hidden" name="useremail">
+                                <input type="submit" value="DELETE">
+                            </form>
+                        </div>
                     </div>
                 {% empty %}
                     <p>No user yet </p>
