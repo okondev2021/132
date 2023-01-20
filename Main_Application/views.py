@@ -35,7 +35,7 @@ def index(request):
                         return HttpResponseRedirect('#form')
                 else:
                         user = User.objects.create(Name = username, Email = useremail)
-                        # print(sending_email(useremail,username))
+                        print(sending_email(useremail,username))
                         user.save()
                         messages.info(request,'Thank you, your email has been received. A confirmation email will be sent to you soon')
                         return HttpResponseRedirect('#form')
