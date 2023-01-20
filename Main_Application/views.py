@@ -6,12 +6,12 @@ import smtplib
 # Create your views here.
 
 
-def sending_email(mail, name):
+def sending_email(mail):
     email_sender = "csc132.collaborators@gmail.com"
     email_password = "avwpgyatfxhdcogw"
     email_receiver = mail
     subject = "Confirmation Mail"
-    body = f"""Dear {name}, your Email and registration process has been confirmed.
+    body = """Your Email and registration process has been confirmed.
     Thank you for using our Software."""
     em = EmailMessage()
     em["From"] = email_sender
@@ -26,10 +26,9 @@ def sending_email(mail, name):
 
 def index(request):
     if request.method == 'POST':
-        username = request.POST['user_name']
         email = request.POST['user_email']
-        user = User.objects.create(Name = username, Email = email)
-        print(sending_email(email, username))
+        user = User.objects.create(Email = email)
+        print(sending_email(email))
         user.save()
     return render(request,'Main_Application/index.html')
 
