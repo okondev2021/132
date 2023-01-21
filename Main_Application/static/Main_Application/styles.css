@@ -5,6 +5,11 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
+body{
+    overflow-x: hidden;
+    width: 100%
+}
+
 .container{
     background: #0F041C;
     min-height: 100vh;
@@ -519,7 +524,7 @@
 
     .container .icons{
         padding: 3em 0;
-        margin: 0em
+        margin: 0em;
     }
 
     .container .marquee-icon-track{
@@ -552,17 +557,22 @@
     }
 
     .container .collaborators main .animation{
-        width: calc(175px *4);
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-row-gap: 3em;
-        justify-items: center;
+        padding: 0em
+    }
+
+    .container .collaborators main .animation .collaborator{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column
     }
 
     .container .collaborators main .animation .collaborator img{
         width: 160px;
         height: auto;
-        margin-right: 15px
     }
 
     /* footer section */
