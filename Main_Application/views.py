@@ -29,11 +29,16 @@ def index(request):
         if request.method == 'POST':
                 username = request.POST['user_name']
                 useremail = request.POST['user_email']
-                user = User.objects.create(Name = username, Email = useremail)
-                print(sending_email(useremail,username))
-                user.save()
-                messages.info(request,'Thank you, your email has been received. A confirmation email will be sent to you soon')
-                return HttpResponseRedirect('#form')
+                user_exists = User.objects.filter(Name = username, Email = useremail)
+                if user_exists.exists():
+                        messages.info(request,'This account already exists')
+                        return HttpResponseRedirect('#form')
+                else:
+                        user = User.objects.create(Name = username, Email = useremail)
+                        print(sending_email(useremail,username))
+                        user.save()
+                        messages.info(request,'Thank you, your email has been received. A confirmation email will be sent to you soon')
+                        return HttpResponseRedirect('#form')
         return render(request,'Main_Application/index.html')
 
 def sending_general_email(email_receivers,email_subject,email_body):
